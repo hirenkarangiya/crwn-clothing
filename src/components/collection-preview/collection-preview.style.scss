@@ -1,0 +1,16 @@
+.collection-preview{
+    width: calc(100% - 30px);
+    max-width: 1170px;
+    margin: auto;
+    margin-bottom: 2rem;
+
+    .title{
+        font-weight: 500;
+    }
+
+    .preview{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+        column-gap: 20px;
+    }
+}
