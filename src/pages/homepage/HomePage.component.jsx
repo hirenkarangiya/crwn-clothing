@@ -6,7 +6,7 @@ import Directory from '../../components/directory/directory.component'
 
 function HomePage() {
     return (
-        <div className="homepage">
+        <div className="container homepage">
             <Directory />
         </div>
     )
