@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch ,Route } from 'react-router-dom';
+import { Switch ,Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
 
@@ -97,7 +97,8 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/shop' component={ShopPage} />
-          <Route exact path='/signin' component={SignInAndSignOut} />
+          {/* <Route exact path='/signin' component={SignInAndSignOut} /> */}
+          <Route exact path='/signin' render={ () => this.props.currentUser ? (<Redirect to="/" />): (<SignInAndSignOut />) } />
           <Route exact path='/hats' component={About} />
           <Route path="/hats/:userId" component={UserDetails} />
           <Route path="*" component={NotFound} />
@@ -107,8 +108,12 @@ class App extends React.Component {
   }
 }
 
+const mapStatetoProps = ({ user }) => ({
+  currentUser : user.currentUser
+});
+
 const mapDispatchtoProps = dispatch => ({
   setCurrentUser : user => dispatch(setCurrentUser(user))
 })
 
-export default connect(null, mapDispatchtoProps)(App);
+export default connect(mapStatetoProps, mapDispatchtoProps)(App);
